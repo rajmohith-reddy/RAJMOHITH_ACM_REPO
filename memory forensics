@@ -1,0 +1,14 @@
+This is a room in Memory Forensics( CRITICAL)
+The things that I learnt are:
+  basic concepts.
+  How to access and set up the environment.
+  Gathering information from the compromised target.
+  Search for suspicious activity using the information obtained.
+  Extracting and analysing data from memory.
+  Conclusion & further steps after completing the room.
+learning prerequisites:
+    Analysing Volatile Memory(https://tryhackme.com/r/room/analysingvolatilememory)
+    Volatility(https://tryhackme.com/r/room/volatility)
+    IR Difficulties and Challenges(https://tryhackme.com/r/room/irdifficultiesandchallenges)
+
+Memi
