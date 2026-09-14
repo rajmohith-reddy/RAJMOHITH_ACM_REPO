@@ -1,0 +1,74 @@
+Crypto Hack write Up
+introduction to Cryptohack:
+Finding Flags: the flag is given there itself so just a intro. flag:crypto{y0ur_f1rst_fl4g}
+Great Snakes: python file download and run it that's all. flag: crypto{z3n_0f_pyth0n}
+ASCII: this we have to write the following code to solve. flag:crypto{ASCII_pr1nt4bl3}
+ASCII: 
+import sys
+if sys.version_info.major == 2:
+	print("we are using python2 and no longer supported" ) ## this is for the python version check 
+ords = [99, 114, 121, 112, 116, 111, 123, 65, 83, 67, 73, 73, 95, 112, 114, 49, 110, 116, 52, 98, 108, 51, 125]
+print("".join(chr(o) for o in ords))
+Hex: flag: crypto{You_will_be_working_with_hex_strings_a_lot}
+import sys
+hex= "63727970746f7b596f755f77696c6c5f62655f776f726b696e675f776974685f6865785f737472696e67735f615f6c6f747d"
+print(bytes.fromhex(hex).decode("ascii"))
+
+Base64: flag: crypto/Base+64+Encoding+is+Web+Safe/
+code: 
+import base64
+hex = "72bca9b68fc16ac7beeb8f849dca1d8a783e8acf9679bf9269f7bf"
+hexadecimal = bytes.fromhex(hex)
+dec = base64.encodebytes(hexadecimal)
+print(dec.decode())
+print(dec.decode(dec))
+
+Bytes and big integers: flag : crypto{3nc0d1n6_4ll_7h3_w4y_d0wn}
+code:
+from Crypto.Util.number import *
+n = 11515195063862318899931685488813747395775516287289682636499965282714637259206269
+bytes = long_to_bytes(n)
+print(bytes)
+
+xor: flag: crypto{aloha}
+txt = "label"
+key = 13
+result = ""
+for char in txt:
+	x = ord(char) ^ key
+	result += char(x)
+print(result)
+
+xor properties: flag: crypto{x0r_i5_ass0c1at1v3}
+code:
+key1 = bytes.fromhex("a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313")
+key2_key1 = bytes.fromhex("37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e")
+KEY2_KEY3 = bytes.fromhex("c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1")
+FLAG_KEY1_KEY3_KEY2 = bytes.fromhex("04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf")
+
+def xor_bytes(b1,b2):
+	return (a ^ b for a,b in zip(b1,b2))
+flag = xor_bytes((xor_bytes(FLAG_KEY1_KEY3_KEY2, KEY2_KEY3), KEY1);
+print(flag.decode())
+
+Favourite byte: flag: crypto{0x10_15_my_f4v0ur173_by7e}
+code:
+key = bytes.fromhex("73626960647f6b206821204f21254f7d694f7624662065622127234f726927756d")
+k = key ^ ord('c')
+print (k)
+out = bytes(a ^ k for a in key)
+print(out.decode())
+
+You either know, XOR you don't: flag: crypto{1f_y0u_Kn0w_En0uGH_y0u_Kn0w_1t_4ll}
+code:
+txt = bytes.fromhex("0e0b213f26041e480b26217f27342e175d0e070a3c5b103e2526217f27342e175d0e077e263451150104")
+hint = b'crypto{'
+for i in range(len(hint)):
+	k = txt[i] ^ hint[i]
+	print(chr(k))
+
+# this gives key = myXORkey
+for i in range(len(ciphertxt));
+	k = key[i % len(key)]
+	out = ciphertext[i] ^ k
+	print(chr(out), end="")
