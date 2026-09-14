@@ -1,0 +1,50 @@
+print(bytes)
+print(type(bytes))
+
+from Crypto.Util.number import *
+n = 11515195063862318899931685488813747395775516287289682636499965282714637259206269
+bytes = long_to_bytes(n)
+print(bytes)
+
+c = "label"
+result = ""
+for char in c:
+    x = ord(char) ^ 13
+    result += chr(x)
+
+print(result)
+
+
+key1 = bytes.fromhex(
+    "a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313"
+)
+
+key2_xor_key1 = bytes.fromhex(
+    "37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e"
+)
+
+key2_xor_key3 = bytes.fromhex(
+    "c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1"
+)
+
+encrypted = bytes.fromhex(
+    "04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf"
+)
+
+
+def xor_bytes(b1, b2):
+    result = []
+
+    for a, b in zip(b1, b2):
+        result.append(a ^ b)
+
+    return bytes(result)
+
+
+flag = xor_bytes(
+    xor_bytes(encrypted, key2_xor_key3),
+    key1
+)
+
+print(flag)
+print(flag.decode())
